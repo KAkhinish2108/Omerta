@@ -1,155 +1,140 @@
-/* ===========================================================
-      COSACODE — MAFIA NOIR ELITE 2.0 (Student Edition++)
-   =========================================================== */
+
 
 :root {
-  --bg: #040404;            /* Deeper black */
-  --layer1: #0a0a0c;        /* Noir layers */
-  --layer2: #0e0e11;
-  --layer3: #121215;
-
-  --text: #e8e8e8;
-  --soft-text: #bfbfbf;
-
-  --accent: #d5b14a;        /* Sharper gold */
-  --accent-soft: #b8952f;
-  --accent-glow: rgba(213, 177, 74, 0.35);
-
+  --bg: #050506;
+  --card: #0b0b0d;
+  --card2: #111114;
+  --text: #eaeaea;
+  --muted: #9a9a9a;
+  --accent: #d0a84a;
+  --accent-soft: #b89238;
   --border: #1b1b1d;
   --radius: 12px;
-
-  --font-title: "Cinzel", serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font: "Cinzel", serif;
+  --transition: 0.25s ease;
 }
 
-/* Load Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;700&display=swap');
+/* Light Theme */
+:root.light {
+  --bg: #f9f6ef;
+  --card: #ffffff;
+  --card2: #f3f1eb;
+  --text: #222;
+  --muted: #555;
+  --accent: #b3872b;
+  --accent-soft: #9e7623;
+  --border: #d0c7b2;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font);
+  transition: background var(--transition), color var(--transition), border var(--transition);
 }
-
-/* ===========================================================
-                       BODY & GLOBAL
-   =========================================================== */
 
 body {
   background: var(--bg);
   color: var(--text);
   padding: 40px;
   line-height: 1.65;
-  font-family: var(--font-body);
 }
 
-/* Soft Gold Glow */
-.glow {
-  text-shadow: 0 0 12px var(--accent-glow);
-}
-
-/* ===========================================================
-                          HEADER
-   =========================================================== */
-
+/* =======================================================
+                      HEADER
+   ======================================================= */
 header {
-  padding-bottom: 22px;
-  margin-bottom: 40px;
+  padding-bottom: 20px;
+  margin-bottom: 35px;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
-  font-family: var(--font-title);
-  font-size: 3rem;
+  font-size: 2.9rem;
   font-weight: 700;
   color: var(--accent);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-  text-shadow: 0 0 16px var(--accent-glow);
+  text-shadow: 0 0 15px rgba(208,168,74,0.35);
 }
 
-h2 {
-  margin: 32px 0 14px;
-  font-size: 1.85rem;
-  letter-spacing: 1.1px;
-  font-weight: 600;
+.theme-toggle {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
   color: var(--accent);
-  font-family: var(--font-title);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
 }
 
-/* Subtitle */
-header small {
-  color: var(--soft-text);
-  font-size: 0.95rem;
-  display: inline-block;
-  margin-top: 4px;
-  opacity: 0.9;
-}
-
-/* ===========================================================
-                           CARDS / SECTIONS
-   =========================================================== */
-
+/* =======================================================
+                      SECTIONS
+   ======================================================= */
 section {
-  background: linear-gradient(140deg, var(--layer1), var(--layer2), var(--layer3));
+  background: linear-gradient(145deg, var(--card), var(--card2));
   padding: 28px;
   margin: 28px 0;
   border-radius: var(--radius);
-  border: 1px solid rgba(213, 177, 74, 0.12);
+  border: 1px solid rgba(255, 215, 130, 0.10);
   box-shadow:
     0 0 10px rgba(0,0,0,0.55),
-    0 0 30px rgba(213, 177, 74, 0.05);
-  transition: 0.2s ease-out;
+    0 0 22px rgba(208,168,74,0.06);
 }
 
-/* Hover lift effect (student vibe, premium touch) */
-section:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 0 10px rgba(0,0,0,0.7),
-    0 0 32px rgba(213, 177, 74, 0.10);
+/* =======================================================
+                      HEADINGS
+   ======================================================= */
+
+h2 {
+  margin: 28px 0 15px;
+  color: var(--accent);
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
-/* ===========================================================
-                        INPUTS / BUTTONS
-   =========================================================== */
+/* =======================================================
+                    FORM ELEMENTS
+   ======================================================= */
 
-input, select {
-  background: #080808;
+input, select, textarea {
+  background: var(--card2);
   border: 1px solid var(--accent-soft);
   color: var(--text);
   padding: 12px 14px;
   border-radius: var(--radius);
-  margin: 12px 0 18px;
   width: 100%;
+  margin: 12px 0 18px;
   font-size: 0.95rem;
 }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 8px var(--accent-glow);
+textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 button {
   background: var(--accent);
   color: #000;
   border: none;
-  padding: 12px 20px;
+  padding: 11px 20px;
   font-weight: 700;
   border-radius: var(--radius);
   cursor: pointer;
-  margin-top: 10px;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 0 12px var(--accent-glow);
-  transition: 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(208,168,74,0.4);
+  letter-spacing: 0.4px;
 }
 
-button:hover:not(:disabled) {
-  background: var(--accent-soft);
-  transform: translateY(-2px);
+button:hover {
+  filter: brightness(1.1);
 }
 
 button:disabled {
@@ -159,17 +144,14 @@ button:disabled {
   box-shadow: none;
 }
 
-/* ===========================================================
-                             TABLE
-   =========================================================== */
-
+/* =======================================================
+                          TABLE
+   ======================================================= */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: #0b0b0d;
-  border-radius: var(--radius);
-  overflow: hidden;
+  background: var(--card);
 }
 
 th, td {
@@ -178,27 +160,27 @@ th, td {
 }
 
 th {
-  background: #111114;
+  background: var(--card2);
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 tbody tr:hover {
-  background: rgba(213, 177, 74, 0.09);
+  background: rgba(208, 168, 74, 0.09);
 }
 
-/* ===========================================================
-                        DETAILS / SUMMARY
-   =========================================================== */
+/* =======================================================
+                DETAILS / SUMMARY
+   ======================================================= */
 
 details {
-  background: #0d0d10;
+  background: var(--card);
   border: 1px solid var(--border);
   padding: 16px;
   border-radius: var(--radius);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 summary {
@@ -206,16 +188,14 @@ summary {
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.6px;
-  font-size: 1rem;
-  margin-bottom: 8px;
 }
 
-/* ===========================================================
-                          CODE BLOCKS
-   =========================================================== */
+/* =======================================================
+                      CODE BLOCK
+   ======================================================= */
 
 pre {
-  background: #0f0f12;
+  background: var(--card2);
   border: 1px solid var(--border);
   padding: 18px;
   border-radius: var(--radius);
@@ -223,48 +203,37 @@ pre {
 }
 
 code {
-  color: #f5f5f5;
+  color: var(--text);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.92rem;
 }
 
-/* ===========================================================
-                           LINKS
-   =========================================================== */
-
+/* =======================================================
+                      LINKS
+   ======================================================= */
 a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
-  transition: 0.15s;
 }
 
 a:hover {
   opacity: 0.75;
-  text-shadow: 0 0 8px var(--accent-glow);
 }
 
-/* ===========================================================
-                            FOOTER
-   =========================================================== */
-
+/* =======================================================
+                      FOOTER
+   ======================================================= */
 footer {
-  margin-top: 60px;
+  margin-top: 55px;
   text-align: center;
-  color: var(--soft-text);
+  color: var(--muted);
   border-top: 1px solid var(--border);
   padding-top: 20px;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
+  font-size: 0.95rem;
 }
 
 footer em {
   color: var(--accent);
   font-style: normal;
-  font-weight: 600;
-}
-
-footer a {
-  display: inline-block;
-  margin-top: 6px;
 }
