@@ -1,0 +1,270 @@
+/* ===========================================================
+      COSACODE — MAFIA NOIR ELITE 2.0 (Student Edition++)
+   =========================================================== */
+
+:root {
+  --bg: #040404;            /* Deeper black */
+  --layer1: #0a0a0c;        /* Noir layers */
+  --layer2: #0e0e11;
+  --layer3: #121215;
+
+  --text: #e8e8e8;
+  --soft-text: #bfbfbf;
+
+  --accent: #d5b14a;        /* Sharper gold */
+  --accent-soft: #b8952f;
+  --accent-glow: rgba(213, 177, 74, 0.35);
+
+  --border: #1b1b1d;
+  --radius: 12px;
+
+  --font-title: "Cinzel", serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+}
+
+/* Load Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===========================================================
+                       BODY & GLOBAL
+   =========================================================== */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding: 40px;
+  line-height: 1.65;
+  font-family: var(--font-body);
+}
+
+/* Soft Gold Glow */
+.glow {
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ===========================================================
+                          HEADER
+   =========================================================== */
+
+header {
+  padding-bottom: 22px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 16px var(--accent-glow);
+}
+
+h2 {
+  margin: 32px 0 14px;
+  font-size: 1.85rem;
+  letter-spacing: 1.1px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-title);
+}
+
+/* Subtitle */
+header small {
+  color: var(--soft-text);
+  font-size: 0.95rem;
+  display: inline-block;
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+/* ===========================================================
+                           CARDS / SECTIONS
+   =========================================================== */
+
+section {
+  background: linear-gradient(140deg, var(--layer1), var(--layer2), var(--layer3));
+  padding: 28px;
+  margin: 28px 0;
+  border-radius: var(--radius);
+  border: 1px solid rgba(213, 177, 74, 0.12);
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.55),
+    0 0 30px rgba(213, 177, 74, 0.05);
+  transition: 0.2s ease-out;
+}
+
+/* Hover lift effect (student vibe, premium touch) */
+section:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.7),
+    0 0 32px rgba(213, 177, 74, 0.10);
+}
+
+/* ===========================================================
+                        INPUTS / BUTTONS
+   =========================================================== */
+
+input, select {
+  background: #080808;
+  border: 1px solid var(--accent-soft);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  margin: 12px 0 18px;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+button {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 12px var(--accent-glow);
+  transition: 0.2s ease-in-out;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background: #333;
+  color: #777;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===========================================================
+                             TABLE
+   =========================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #0b0b0d;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px;
+  border: 1px solid var(--border);
+}
+
+th {
+  background: #111114;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+}
+
+tbody tr:hover {
+  background: rgba(213, 177, 74, 0.09);
+}
+
+/* ===========================================================
+                        DETAILS / SUMMARY
+   =========================================================== */
+
+details {
+  background: #0d0d10;
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.6px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* ===========================================================
+                          CODE BLOCKS
+   =========================================================== */
+
+pre {
+  background: #0f0f12;
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+code {
+  color: #f5f5f5;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.92rem;
+}
+
+/* ===========================================================
+                           LINKS
+   =========================================================== */
+
+a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.15s;
+}
+
+a:hover {
+  opacity: 0.75;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ===========================================================
+                            FOOTER
+   =========================================================== */
+
+footer {
+  margin-top: 60px;
+  text-align: center;
+  color: var(--soft-text);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+
+footer em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+}
+
+footer a {
+  display: inline-block;
+  margin-top: 6px;
+}

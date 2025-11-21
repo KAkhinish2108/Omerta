@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CosaCode — HTML-only Static Analyzer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>🔎 CosaCode</h1>
+    <p><strong>Where Power Runs on this Code.</strong></p>
+
+    <p>
+      <small>
+         An Analyzer Dashboard Designed & built with clarity, curiosity, and a bit of chaos.
+        <strong></strong>.
+        <br>
+      </small>
+    </p>
+    <hr>
+  </header>
+
+  <main>
+
+    <!-- Analyzer Controls -->
+    <section aria-labelledby="controls">
+      <h2 id="controls">Analyzer Controls</h2>
+      <form method="post" aria-label="Analyzer form (demo)">
+        <label for="project">Project / File name:</label>
+        <input id="project" name="project" placeholder="example.py" aria-describedby="projectHelp">
+        <button type="submit" disabled>Analyze (Demo)</button>
+        <p id="projectHelp">
+          <small>Demo-only: make backend to enable upload & analysis.</small>
+        </p>
+      </form>
+
+      <p>Overall quality: <meter min="0" max="100" value="84">84/100</meter></p>
+      <p>Scan progress: <progress value="55" max="100">55%</progress></p>
+      <hr>
+    </section>
+
+    <!-- Files & Tree -->
+    <section aria-labelledby="files">
+      <h2 id="files">Files & Tree</h2>
+
+      <details open>
+        <summary>src/</summary>
+
+        <details>
+          <summary>main.py — 124 lines</summary>
+          <ol>
+            <li>compute.py</li>
+            <li>helpers.py</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>lib/</summary>
+          <ol>
+            <li>utils.py</li>
+            <li>formatters.py</li>
+          </ol>
+        </details>
+
+      </details>
+
+      <details>
+        <summary>Open file preview</summary>
+        <pre><code># main.py (preview)
+def compute_angle(x, y):
+    tmp = x + y  # unused
+    return x / y
+</code></pre>
+      </details>
+
+      <hr>
+    </section>
+
+    <!-- Summary -->
+    <section aria-labelledby="summary">
+      <h2 id="summary">Summary</h2>
+      <p><strong>Issues:</strong> 7 — <strong>High:</strong> 1 — <strong>Medium:</strong> 4 — <strong>Low:</strong> 2</p>
+
+      <!-- Donut Chart -->
+      <svg role="img" aria-label="health 78 percent" width="120" height="120" viewBox="0 0 42 42">
+        <circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#eee" stroke-width="6"></circle>
+        <circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#000" stroke-width="6" stroke-dasharray="78 22" stroke-linecap="round" transform="rotate(-90 21 21)"></circle>
+        <text x="21" y="23" font-size="6" text-anchor="middle" dominant-baseline="middle">78%</text>
+      </svg>
+
+      <hr>
+    </section>
+
+    <!-- Issues Table -->
+    <section aria-labelledby="issues">
+      <h2 id="issues">Issues</h2>
+
+      <table border="1" cellpadding="6" cellspacing="0" summary="Detected issues">
+        <caption>Detected issues (sample)</caption>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Rule</th>
+            <th>File</th>
+            <th>Line</th>
+            <th>Severity</th>
+            <th>Suggestion</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Unused variable</td>
+            <td>main.py</td>
+            <td>12</td>
+            <td>🔴 High</td>
+            <td>Remove <code>tmp</code> or use it.</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Missing docstring</td>
+            <td>utils.py</td>
+            <td>1</td>
+            <td>🟠 Medium</td>
+            <td>Add module / function docstrings.</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td>Inconsistent indent</td>
+            <td>helpers.py</td>
+            <td>45</td>
+            <td>🟠 Medium</td>
+            <td>Use 4 spaces consistently.</td>
+          </tr>
+
+          <tr>
+            <td>4</td>
+            <td>Bad name</td>
+            <td>main.py</td>
+            <td>78</td>
+            <td>🟡 Low</td>
+            <td>Rename <code>a</code> → <code>angle_deg</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><small>Tip: add "severity" field to rule config for filtering.</small></p>
+      <hr>
+    </section>
+
+    <!-- Rules -->
+    <section aria-labelledby="rules">
+      <h2 id="rules">Rules (examples)</h2>
+
+      <details>
+        <summary>Unused variables</summary>
+        <p>Detect assigned names that are never accessed. Suggest removal or usage.</p>
+      </details>
+
+      <details>
+        <summary>Naming conventions</summary>
+        <p>Prefer <code>snake_case</code> for Python. Flag 1-letter names (except i, j).</p>
+      </details>
+
+      <details>
+        <summary>Docstrings</summary>
+        <p>Public functions/modules should have docstrings (one-liners acceptable).</p>
+      </details>
+
+      <details>
+        <summary>Style/Spacing</summary>
+        <p>Trailing whitespace, mixed tabs/spaces, and long lines are flagged.</p>
+      </details>
+
+      <hr>
+    </section>
+
+    <!-- Downloads -->
+    <section aria-labelledby="actions">
+      <h2 id="actions">Actions & Export</h2>
+
+      <p>
+        <a download="report.txt">Download sample report (TXT)</a> |
+        <a download="report.html">Download sample report (HTML)</a>
+      </p>
+
+      <form aria-label="Filter issues (demo)">
+        <label for="filter">Filter severity:</label>
+        <select id="filter" name="filter" disabled>
+          <option>All</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+        <button> disabled Apply</button>
+      </form>
+
+      <hr>
+    </section>
+
+    <!-- About -->
+    <section aria-labelledby="about">
+      <h2 id="about">About this mock</h2>
+      <p>  
+         To make it functional: connect a server (Flask/Django) or client code that feeds data into the template.</p>
+    </section>
+
+  </main>
+
+ <footer>
+   <p><small>© 2025 CosaCode.</small></p>
+   <p><a href="mailto:contact@cosacode.com">Contact Us</a></p>
+ </footer>
+
+</body>
+</html>
