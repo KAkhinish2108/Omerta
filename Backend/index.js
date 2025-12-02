@@ -1,48 +1,88 @@
-import express from "express";
-import cors from "cors";
-import multer from "multer";
-import { analyzeCode } from "./analyzer.js";
+// script.js
+import { analyzeCode } from './analyzer.js';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+// DOM references
+const analyzeBtn = document.getElementById('analyzeBtn');
+const uploadInput = document.getElementById('fileInput');
+const codeInput = document.getElementById('codeInput');
+const output = document.getElementById('output');
 
-const upload = multer({ storage: multer.memoryStorage()});
+// --- Render Results
+function renderResults(results) {
+  output.innerHTML = "";
 
-// API 1: Analyze raw text code
+  if (!results || results.length === 0) {
+    output.innerHTML = `<div class="issue">✔ No issues found</div>`;
+    return;
+  }
 
-app.post("/analyze", (req, res) => {
-    const { code } = req.body;
+  results.forEach(r => {
+    const el = document.createElement("div");
+    el.className = "issue";
+
+    el.innerHTML = `
+      <strong>${r.rule}</strong>
+      <span class="sev">[${r.severity}]</span>
+      <div class="suggest">${r.suggestion || ""}</div>
+      ${r.details ? `<small>Details: ${JSON.stringify(r.details)}</small>` : ""}
+    `;
+
+    output.appendChild(el);
+  });
+}
+
+// --- Analyze Typed Code
+analyzeBtn.addEventListener("click", () => {
+  const code = codeInput.value.trim();
+  if (code === "") {
+    output.innerHTML = "<div class='issue'>⚠ Please enter some code to analyze.</div>";
+    return;
+  }
+  const result = analyzeCode(code);
+  renderResults(result);
+});
+
+// --- Analyze File
+uploadInput.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const code = reader.result;
     const result = analyzeCode(code);
-    res.json({ result});
+    renderResults(result);
+  };
+
+  reader.readAsText(file, "utf-8");
 });
 
+// 🔥 Infinite Typing Animation
+const text = "CosaCode Analyzer";
+let index = 0;
+let isDeleting = false;
+const speed = 120;
 
-// API 2: Analyze uploaded code file
+function typeEffect() {
+  const el = document.getElementById("typewriter");
 
-app.post("/upload", upload.single("file"), (req, res) => {
-    const code = req.file.buffer.toString("utf-8");
-    const result = analyzeCode(code);
-    res.json({ result});
-});
+  if (!isDeleting) {
+    el.textContent = text.substring(0, index++);
+  } else {
+    el.textContent = text.substring(0, index--);
+  }
 
-app.listen(3000, () => console.log("CosaCode backend running at Port 3000"));
+  if (index === text.length + 1) {
+    isDeleting = true;
+    setTimeout(typeEffect, 800);
+    return;
+  }
 
+  if (isDeleting && index === 0) {
+    isDeleting = false;
+  }
 
-// How the UI Will Use This Backend
+  setTimeout(typeEffect, speed);
+}
 
-// For typing code:
-fetch("http://localhost:3000/analyze", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ code})
-});
-
-// For uploading file:
-const formData = new FormData();
-formData.append("file", file);
-
-fetch("http://localhost:3000/upload", {
-  method: "POST",
-  body: formData
-});
+typeEffect();
