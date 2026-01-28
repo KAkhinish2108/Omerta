@@ -10,9 +10,9 @@ The Rule Engine is the judgment. It's a collection of highly specific mandates. 
 
 Finally, the Reporter... it presents the findings. No noise, no excuses. Just the line number, the offense, and the severity. It is the final, definitive word. Now, make it beautiful, like a perfectly tailored suit.
 
+---
 
-
-🔍 Key Rules (Initial Set)
+### 🔍 Key Rules (Initial Set)
 
 1. Unused Variables: Marks variables that are declared but never referenced. (Wasted resources. Sloppy.)
 
