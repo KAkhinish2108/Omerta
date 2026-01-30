@@ -27,7 +27,7 @@ Finally, the Reporter... it presents the findings. No noise, no excuses. Just th
 
 
 
-📁 FOLDER STRUCTURE
+## 📁 FOLDER STRUCTURE
      |
      index.html
      style.css
